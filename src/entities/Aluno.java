@@ -93,13 +93,13 @@ public class Aluno {
 
 	@Override
 	public String toString() {
-		return "Dados do Aluno "
-				+ "\nNome:" + nome 
-				+ "\nEndereco=" + endereco 
-				+ "\nTelefone=" + telefone 
-				+ "\nSexo=" + sexo 
-				+ "\nRA="+ ra 
-				+ "\nCurso=" + curso;
+		return 
+				  "\nNome: " + nome 
+				+ "\nEndereco: " + endereco 
+				+ "\nTelefone: " + telefone 
+				+ "\nSexo: " + sexo 
+				+ "\nRA: "+ ra 
+				+ "\nCurso: " + curso;
 	}
 
 }

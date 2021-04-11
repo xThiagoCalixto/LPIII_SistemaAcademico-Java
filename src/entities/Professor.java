@@ -19,8 +19,13 @@ public class Professor {
 
 	@Override
 	public String toString() {
-		return "Professor [nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", sexo=" + sexo
-				+ ", registro=" + registro + ", materia=" + materia + "]";
+		return 
+				  "\nNome: " + nome 
+				+ "\nEndereco: " + endereco 
+				+ "\nTelefone: " + telefone 
+				+ "\nSexo: " + sexo 
+				+ "\nRegistro: "+ registro 
+				+ "\nMateria: " + materia;
 	}
 
 

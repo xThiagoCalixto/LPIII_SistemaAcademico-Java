@@ -13,8 +13,8 @@ public class SistemaAcademico {
 	public Professor[] professores;
 
 	public SistemaAcademico() {
-		alunos = new Aluno[20];
-		professores = new Professor[20];
+		alunos = new Aluno[40];
+		professores = new Professor[10];
 	}
 
 	public boolean cadastrarAluno(Aluno a) {
@@ -39,8 +39,8 @@ public class SistemaAcademico {
 
 	public boolean removerProfessor(int registro) {
 		for (int i = 0; i < professores.length; i++) {
-			if (professores[i].getRegistro() == registro) {
-				for (int aux = i; aux < professores.length; aux++) {
+			if ((professores[i] != null )&&(professores[i].getRegistro() == registro)) {
+				for (int aux = i; aux < professores.length-1; aux++) {
 					professores[aux] = professores[aux + 1];
 				}
 				professores[professores.length - 1] = null;
@@ -51,9 +51,8 @@ public class SistemaAcademico {
 	}
 
 	public boolean removerAluno(int ra) {
-
 		for (int i = 0; i < alunos.length; i++) {
-			if (alunos[i].getRa() == ra) {
+			if ((alunos[i] != null )&&(alunos[i].getRa() == ra)) {
 				for (int aux = i; aux < alunos.length - 1; aux++) {
 					alunos[aux] = alunos[aux + 1];
 				}
@@ -67,12 +66,12 @@ public class SistemaAcademico {
 	public boolean alterarAluno(int ra) {
 
 		for (int i = 0; i < alunos.length; i++) {
-			if (alunos[i].getRa() == ra) {
+			if ((alunos[i] != null )&&(alunos[i].getRa() == ra)) {
 				System.out.println("Alterar Aluno:");
 				System.out.println("Digite o RA");
 				alunos[i].setRa(sc.nextInt());
 				System.out.println("Digite o nome");
-				sc.next();
+				alunos[i].setNome(sc.nextLine());
 				alunos[i].setNome(sc.nextLine());
 				System.out.println("Digite o curso");
 				alunos[i].setCurso(sc.nextLine());
@@ -92,12 +91,12 @@ public class SistemaAcademico {
 	public boolean alterarProfessor(int registro) {
 
 		for (int i = 0; i < professores.length; i++) {
-			if (professores[i].getRegistro() == registro) {
+			if ((professores[i] != null )&&(professores[i].getRegistro() == registro)) {
 				System.out.println("Alterar Professor:");
 				System.out.println("Digite o registro");
 				professores[i].setRegistro(sc.nextInt());
 				System.out.println("Digite o nome");
-				sc.next();
+				professores[i].setNome(sc.nextLine());
 				professores[i].setNome(sc.nextLine());
 				System.out.println("Digite a Materia");
 				professores[i].setMateria(sc.nextLine());
@@ -114,16 +113,14 @@ public class SistemaAcademico {
 		return false;
 	}
 
-	public void pesquisarAluno(int ra) {
+	public boolean pesquisarAluno(int ra) {
 		for (int i = 0; i < alunos.length; i++) {
-			if (alunos[i].getRa() == ra) {
+			if ((alunos[i] != null )&&(alunos[i].getRa() == ra)) {
 				System.out.println(alunos[i]);
-				return;
+				return true;
 			}
-			System.out.println("Aluno não encontrado");
-			return;
-
 		}
+		return false;
 	}
 
 	@Override
@@ -135,6 +132,15 @@ public class SistemaAcademico {
 		for (int i = 0; i < alunos.length; i++) {
 			if (alunos[i] != null) {
 				System.out.println(alunos[i]);
+			}
+
+		}
+	}
+	
+	public void listarProfessores() {
+		for (int i = 0; i < professores.length; i++) {
+			if (professores[i] != null) {
+				System.out.println(professores[i]);
 			}
 
 		}

@@ -14,17 +14,18 @@ public class Principal {
 	public static void main(String[] args) {
 		int opcao = 0;
 		do {
-			System.out.println("Escolha a opcao" 
-					+ "\n1- Cadastrar Aluno" 
-					+ "\n2- Cadastrar Professor"
-					+ "\n3- Excluir Aluno" 
-					+ "\n4- Excluir Professor" 
-					+ "\n5- Alterar Aluno" 
-					+ "\n6- Alterar Professor"
-					+ "\n7- Pesquisar Aluno" 
-					+ "\n8- Pesquisar Professor"
-					+ "\n9- Listar Alunos"
-					+ "\n10- Sair");
+			System.out.println("\nEscolha a opcao" 
+					+ "\n 1- Cadastrar Aluno" 
+					+ "\n 2- Cadastrar Professor"
+					+ "\n 3- Excluir Aluno" 
+					+ "\n 4- Excluir Professor" 
+					+ "\n 5- Alterar Aluno" 
+					+ "\n 6- Alterar Professor"
+					+ "\n 7- Pesquisar Aluno" 
+					+ "\n 8- Pesquisar Professor"
+					+ "\n 9- Listar Alunos"
+					+ "\n10 - Listar Professores"
+					+ "\n11- Sair\n");
 			opcao = sc.nextInt();
 			String nome, endereco, telefone, materia, curso;
 			char sexo;
@@ -36,7 +37,7 @@ public class Principal {
 				System.out.println("Digite o RA");
 				ra = sc.nextInt();
 				System.out.println("Digite o nome");
-				sc.next();
+				nome = sc.nextLine();
 				nome = sc.nextLine();
 				System.out.println("Digite o curso");
 				curso = sc.nextLine();
@@ -47,15 +48,18 @@ public class Principal {
 				System.out.println("Digite o Sexo (M/F)");
 				sexo = sc.next().charAt(0);
 				Aluno a = new Aluno(nome, endereco, telefone, sexo, ra, curso);
-				sa.cadastrarAluno(a);
-				break;
+				if(sa.cadastrarAluno(a)) {
+					System.out.println("Aluno Cadastrado com sucesso");
+				}else {
+					System.out.println("Nao foi possivel cadastrar o aluno");
+				};break;
 
 			case 2:
 				System.out.println("Cadastrar Professor:");
 				System.out.println("Digite o Registro");
 				registro = sc.nextInt();
 				System.out.println("Digite o nome");
-				sc.next();
+				nome = sc.nextLine();
 				nome = sc.nextLine();
 				System.out.println("Digite a materia");
 				materia = sc.nextLine();
@@ -66,99 +70,81 @@ public class Principal {
 				System.out.println("Digite o Sexo (M/F)");
 				sexo = sc.next().charAt(0);
 				Professor p = new Professor(nome, endereco, telefone, sexo, registro, materia);
-				sa.cadastrarProfessor(p);
-				break;
+				if(sa.cadastrarProfessor(p)) {
+					System.out.println("Professor Cadastrado com sucesso");
+				}else {
+					System.out.println("Nao foi possivel cadastrar o professor");
+				};break;
+
 			case 3:
 				System.out.println("Digite o RA do aluno a ser excluido");
 				ra = sc.nextInt();
-				sa.removerAluno(ra);
-				break;
+				if(sa.removerAluno(ra)) {
+					System.out.println("Aluno removido com sucesso");
+				}else {
+					System.out.println("Nao foi possivel localizar o aluno - Exclusao nao efetuada");
+				};break;
+
 			case 4:
 				//Excluir Professor
 				System.out.println("Digite o registro do professor a ser excluido");
 				registro = sc.nextInt();
-				sa.removerProfessor(registro);
-				break;
+				if(sa.removerProfessor(registro)) {
+					System.out.println("Professor removido com sucesso");
+				}else {
+					System.out.println("Nao foi possivel localizar o professor - Exclusao nao efetuada");
+				};break;
+
 			case 5:
 				//Alterar Aluno
 				System.out.println("Digite o RA do aluno a ser alterado");
 				ra = sc.nextInt();
-				sa.alterarAluno(ra);
-				break;
+				if(sa.alterarAluno(ra)) {
+					System.out.println("Aluno alterado com sucesso");
+				}else {
+					System.out.println("Nao foi possivel localizar o aluno - Alteracao nao efetuada");
+				};break;
+
 			case 6:
 				//Alterar Professor
 				System.out.println("Digite o registro do professor a ser alterado");
 				registro = sc.nextInt();
-				sa.alterarProfessor(registro);
-				break;
+				if(sa.alterarProfessor(registro)) {
+					System.out.println("Professor alterado com sucesso");
+				}else {
+					System.out.println("Nao foi possivel localizar o professor - Alteracao nao efetuada");
+				};break;
+			
 			case 7:
 				//Pesquisar Aluno
 				System.out.println("Digite o RA do aluno para pesquisa");
 				ra = sc.nextInt();
-				sa.pesquisarAluno(ra);
-				break;
+				if(!sa.pesquisarAluno(ra)){
+					System.out.println("Aluno nao localizado");
+				};break;
+			
 			case 8:
 				//Pesquisar Professor
 				System.out.println("Digite o registro do professor a ser excluido");
 				registro = sc.nextInt();
-				sa.removerProfessor(registro);
+				if(!sa.removerProfessor(registro)) {
+					System.out.println("Professor nao localizado");
+				};
 				break;
+			
 			case 9:
 				//Listar Alunos
 				sa.listarAlunos();
-				break;
-			}
-		} while (opcao < 10);
-		
-	}
-	
-	
-	/*
-	 * String nome, endereco, telefone, curso; char sexo; int ra;
-	 * System.out.println("Cadastrar Aluno:"); System.out.println("Digite o RA"); ra
-	 * = sc.nextInt(); System.out.println("Digite o nome"); sc.next(); nome =
-	 * sc.nextLine(); System.out.println("Digite o curso"); curso = sc.nextLine();
-	 * System.out.println("Digite o endereço"); endereco = sc.nextLine();
-	 * System.out.println("Digite o telefone"); telefone = sc.nextLine();
-	 * System.out.println("Digite o Sexo (M/F)"); sexo = sc.next().charAt(0); Aluno
-	 * a = new Aluno(nome, endereco, telefone, sexo, ra, curso);
-	 * SA.cadastrarAluno(a);
-	 */
-}
+			break;
+			
+			case 10:
+			//Listar Professores
+			sa.listarProfessores();
+			break;
 
-/*
- * 
- * package entities;
- * 
- * import java.util.Scanner; import entities.Aluno; import entities.Professor;
- * 
- * public class SistemaAcademico { static Scanner sc = new Scanner(System.in);
- * 
- * private Aluno[] alunos; private Professor[] professores;
- * 
- * alunos=new Aluno[20];professores=new Professor[20];
- * 
- * void cadastrarAluno(Aluno a) { int i = alunos[]; alunos[i + 1] = a; }
- * 
- * void cadastrarProfessor(Professor p) { int i = professores.length;
- * professores[i + 1] = p; }
- * 
- * public static void main(String[] args) {
- * 
- * do { System.out.println("Escolha a opcao desejada:"); int opcao = 0; switch
- * (opcao) { case 1: String nome, endereco, telefone, curso; char sexo; int ra;
- * System.out.println("Cadastrar Aluno:"); System.out.println("Digite o RA"); ra
- * = sc.nextInt(); System.out.println("Digite o nome"); sc.next(); nome =
- * sc.nextLine(); System.out.println("Digite o curso"); curso = sc.nextLine();
- * System.out.println("Digite o endereço"); endereco = sc.nextLine();
- * System.out.println("Digite o telefone"); telefone = sc.nextLine();
- * System.out.println("Digite o Sexo (M/F)"); sexo = sc.next().charAt(0);
- * cadastrarAluno(new Aluno(nome, endereco, telefone, sexo, ra, curso)); break;
- * }
- * 
- * 
- * }
- * 
- * 
- * } }
- */
+		}
+		
+	} while (opcao < 11);
+	System.out.println("\n * * * Sistema Fechado * * *");
+	}
+}
